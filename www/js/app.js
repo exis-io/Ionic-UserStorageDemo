@@ -78,8 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 })
 .config(function($riffleProvider){
-  $riffleProvider.SetFabricLocal();
-  $riffleProvider.SetDomain("xs.demo.nick.myapp");
+  $riffleProvider.SetDomain("xs.demo.USERNAME.myapp");
 })
 .run(function($riffle, $rootScope, $state){
   $rootScope.$on('$ionicView.enter', function() {
@@ -95,15 +94,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   $rootScope.$on('$riffle.leave', loggedOut);
 })
+//this block seeds the User DB with some fake users the first time this app is run.
+//feel free to delete it
 .run(function($riffle){
-  //this block seeds the User DB with some fake users the first time this app is run.
-  //feel free to delete it 
   // Some fake data
   var seed = [{
     username: "nick",
     password: "ExisRocks!",
     name: 'Nick Hyatt',
-    status: 'Killing it at Exis!',
+    status: 'Writing JS like it is going out of style!',
     email: 'nick@exis.io',
   }, {
     username: "mike",
@@ -115,7 +114,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     username: "mickey",
     password: "ExisRocks!",
     name: 'Mickey Barboi',
-    status: 'Making it rain $$',
+    status: 'Swift-ly going where no man has gone before.',
     email: 'mickey@exis.io',
   },{
     username: "lance",
@@ -148,10 +147,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       session.save().then(logout, error);
     }
     function logout(){
-      $riffle.User.leave().then(timeout, error);
-    }
-    function timeout(){
-      setTimeout(seedDB, 1000);
+      $riffle.User.leave().then(seedDB, error);
     }
     function error(){
       return;
