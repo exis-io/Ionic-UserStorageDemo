@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Update Status</h1>
+    <button class="button button-clear button-assertive" ng-click="editStatus.hide()">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Image URL</span>
+        <input type="text" placeholder="Image URL (optional)" ng-model="newStatus.photoUrl">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Status</span>
+        <textarea type="text" placeholder="Status" ng-model="newStatus.body"></textarea>
+      </label>
+    </div>
+    <button ng-click="post()" class="button button-block button-positive">
+      Post Status
+    </button>
+  </ion-content>
+</ion-modal-view>

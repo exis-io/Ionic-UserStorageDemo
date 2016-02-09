@@ -1,0 +1,24 @@
+<ion-view view-title="My Status">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear button-assertive" ng-click="me.leave()">Logout</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear button-positive" ng-click="editStatus.show()">Edit</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <div class="item item-avatar">
+        <img ng-src="http://www.gravatar.com/avatar/{{me.gravatar}}">
+        <h2>{{me.name}}</h2>
+        <p>{{me.email}}</p>
+      </div>
+      <div class="item item-body">
+        <p>
+          {{me.publicStorage.status || "Post your status for others to see..."}}
+        </p>
+        <img ng-if="me.publicStorage.statusPhotoUrl" class="full-image" ng-src="{{me.publicStorage.statusPhotoUrl}}">
+        <img ng-if="!me.publicStorage.statusPhotoUrl" style="max-height: 200px;" src="img/exis-logo.png">
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

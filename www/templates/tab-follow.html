@@ -1,0 +1,23 @@
+<ion-view view-title="People">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear button-assertive" ng-click="me.leave()">Logout</button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="postService.load()">
+    </ion-refresher>
+    <ion-list>
+      <div ng-if="postService.users.length === 0" class="item item-body">
+        <p>
+          There currently isn't anyone to follow! Either you're following everyone or there are no other registered users with public posts.
+        </p>
+      </div>
+      <div ng-repeat="post in postService.users" class="item item-avatar item-icon-right">
+        <img ng-src="http://www.gravatar.com/avatar/{{post.gravatar}}">
+        <h2>{{post.name}}</h2>
+        <p>{{post.email}}</p>
+        <p>{{post.status}}</p>
+        <a ng-click="postService.follow(post.email)" class="icon ion-person-add"></a>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

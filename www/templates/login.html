@@ -1,0 +1,28 @@
+<ion-view view-title="Login/Register" name="login">
+  <ion-content class="padding">
+      <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Username" ng-model="user.username">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="user.password">
+          </label>
+          <label ng-show="showRegister" class="item item-input">
+              <input type="email" placeholder="Email" ng-model="user.email">
+          </label>
+          <label ng-show="showRegister" class="item item-input">
+              <input type="text" placeholder="Name" ng-model="user.name">
+          </label>
+      </div>
+      <button ng-show="!showRegister" class="button button-block button-calm" ng-click="login()">Login</button>
+      <button ng-show="showRegister" class="button button-block button-calm" ng-click="register()">Register</button>
+  </ion-content>
+  <div class="tabs">
+    <a class="tab-item" ng-class="{active: !showRegister}" ng-click="showRegister = false">
+      Login
+    </a>
+    <a class="tab-item" ng-class="{active: showRegister}" ng-click="showRegister = true">
+      Register
+    </a>
+  </div>
+</ion-view>
