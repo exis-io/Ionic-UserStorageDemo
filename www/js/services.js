@@ -5,35 +5,14 @@ angular.module('starter.services', [])
   var api = {};
 
   //private vars and functions
-  function loadData(posts){
-    api.users = [];
-    api.myFeed = [];
-    posts.forEach(filter);
+  function loadUsers(users){
+    api.users = users;
     $rootScope.$broadcast('scroll.refreshComplete');
   }
 
-  function filter(post){
-    var following = $riffle.User.privateStorage.following || [];
-    if(post.email === $riffle.User.email){
-      return;
-    }else if(following.includes(post.email)){
-      api.myFeed.push(post);
-    }else{
-      api.users.push(post);
-    }
-  }
-
-  //listen live for status updates
-  $riffle.subscribe("statusUpdate", update);
-
-  function update(email){
-    var following = $riffle.User.privateStorage.following;
-    for(var entry in following){
-      if(email === following[entry]){
-        api.load();
-        return;
-      }
-    }
+  function loadFeed(feedData){
+    api.myFeed = feedData;
+    $rootScope.$broadcast('scroll.refreshComplete');
   }
 
   //API Methods and vars
@@ -41,7 +20,12 @@ angular.module('starter.services', [])
   api.myFeed = [];
 
   api.load = function(){
-    $riffle.User.getPublicData().then(loadData);
+    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || []
+    var following = $riffle.User.privateStorage.following;
+    var usersQuery = {email: { $nin: following.concat([$riffle.User.email]) } };
+    $riffle.User.getPublicData(usersQuery).then(loadUsers);
+    var feedQuery = {email: { $in: following } };
+    $riffle.User.getPublicData(feedQuery).then(loadFeed);
   };
 
   api.follow = function(email){
