@@ -49,12 +49,8 @@ angular.module('starter.controllers', [])
     $scope.modal.remove();
   });
 
-  function publishUpdate(){
-    $riffle.publish('statusUpdate', $riffle.User.email);
-  }
-
   $scope.post = function(){
-    Posts.post($scope.newStatus).then(publishUpdate);
+    Posts.post($scope.newStatus);
     $scope.editStatus.hide();
   };
 

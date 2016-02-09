@@ -23,19 +23,6 @@ angular.module('starter.services', [])
     }
   }
 
-  //listen live for status updates
-  $riffle.subscribe("statusUpdate", update);
-
-  function update(email){
-    var following = $riffle.User.privateStorage.following;
-    for(var entry in following){
-      if(email === following[entry]){
-        api.load();
-        return;
-      }
-    }
-  }
-
   //API Methods and vars
   api.users = [];
   api.myFeed = [];
