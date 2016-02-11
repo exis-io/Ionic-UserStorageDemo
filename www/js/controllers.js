@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('StatusCtrl', function($scope, $state, $riffle, $ionicModal, Posts) {
+.controller('StatusCtrl', function($scope, $riffle, $ionicModal) {
 
   $scope.newStatus = {};
 
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.post = function(){
-    Posts.post($scope.newStatus).then(publishUpdate);
+    $scope.postService.post($scope.newStatus).then(publishUpdate);
     $scope.editStatus.hide();
   };
 
