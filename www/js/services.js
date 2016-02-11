@@ -45,7 +45,6 @@ angular.module('starter.services', [])
   };
 
   api.follow = function(email){
-    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || [];
     $riffle.User.privateStorage.following.push(email);
     $riffle.User.save().then(api.load);
   };
