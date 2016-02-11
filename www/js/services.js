@@ -27,7 +27,7 @@ angular.module('starter.services', [])
   $riffle.subscribe("statusUpdate", update);
 
   function update(email){
-    var following = $riffle.User.privateStorage.following;
+    var following = $riffle.User.privateStorage.following || [];
     for(var entry in following){
       if(email === following[entry]){
         api.load();
