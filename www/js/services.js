@@ -4,31 +4,30 @@ angular.module('starter.services', [])
 
   var api = {};
 
-  //private vars and functions
-  function loadData(posts){
-    api.users = [];
-    api.myFeed = [];
-    posts.forEach(filter);
-    $rootScope.$broadcast('scroll.refreshComplete');
-  }
-
-  function filter(post){
-    var following = $riffle.User.privateStorage.following || [];
-    if(post.email === $riffle.User.email){
-      return;
-    }else if(following.includes(post.email)){
-      api.myFeed.push(post);
-    }else{
-      api.users.push(post);
-    }
-  }
-
   //API Methods and vars
   api.users = [];
   api.myFeed = [];
 
   api.load = function(){
     $riffle.User.getPublicData().then(loadData);
+
+    function loadData(posts){
+      api.users = [];
+      api.myFeed = [];
+      posts.forEach(filter);
+      $rootScope.$broadcast('scroll.refreshComplete');
+    }
+
+    function filter(post){
+      var following = $riffle.User.privateStorage.following || [];
+      if(post.email === $riffle.User.email){
+        return;
+      }else if(following.includes(post.email)){
+        api.myFeed.push(post);
+      }else{
+        api.users.push(post);
+      }
+    }
   };
 
   api.follow = function(email){
