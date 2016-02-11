@@ -45,11 +45,14 @@ angular.module('starter.services', [])
   };
 
   api.follow = function(email){
-    $riffle.User.privateStorage.following.push(email);;
+    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || [];
+    $riffle.User.privateStorage.following.push(email);
     $riffle.User.save().then(api.load);
   };
 
   api.post = function(status){
+    $riffle.User.publicStorage.email = $riffle.User.email;
+    $riffle.User.publicStorage.name = $riffle.User.name;
     $riffle.User.publicStorage.status = status.body;
     $riffle.User.publicStorage.statusPhotoUrl = status.photoUrl || null;
     return $riffle.User.save();
