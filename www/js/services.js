@@ -5,30 +5,33 @@ angular.module('starter.services', [])
   var api = {};
 
   //private vars and functions
-  function loadUsers(users){
-    api.users = users;
-    $rootScope.$broadcast('scroll.refreshComplete');
-  }
-
-  function loadFeed(feedData){
-    api.myFeed = feedData;
-    $rootScope.$broadcast('scroll.refreshComplete');
-  }
 
   //API Methods and vars
   api.users = [];
   api.myFeed = [];
 
   api.load = function(){
-    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || []
-    var following = $riffle.User.privateStorage.following;
+    var following = $riffle.User.privateStorage.following || [];
+
     var usersQuery = {email: { $nin: following.concat([$riffle.User.email]) } };
     $riffle.User.getPublicData(usersQuery).then(loadUsers);
+
     var feedQuery = {email: { $in: following } };
     $riffle.User.getPublicData(feedQuery).then(loadFeed);
+
+    function loadUsers(users){
+      api.users = users;
+      $rootScope.$broadcast('scroll.refreshComplete');
+    }
+
+    function loadFeed(feedData){
+      api.myFeed = feedData;
+      $rootScope.$broadcast('scroll.refreshComplete');
+    }
   };
 
   api.follow = function(email){
+    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || []
     $riffle.User.privateStorage.following.push(email);
     $riffle.User.save().then(api.load);
   };
