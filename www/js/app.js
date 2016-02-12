@@ -105,6 +105,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     status: 'Writing JS like it is going out of style!',
     email: 'nick@exis.io',
   }, {
+    username: "chase",
+    password: "ExisRocks!",
+    name: 'Chase Roossin',
+    status: 'Launching Exis into outer space!',
+    email: 'chase@exis.io',
+  }, {
     username: "mike",
     password: "ExisRocks!",
     name: 'Mike Bauer',
