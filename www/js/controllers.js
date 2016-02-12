@@ -49,14 +49,14 @@ angular.module('starter.controllers', [])
     $scope.modal.remove();
   });
 
-  function publishUpdate(){
-    $riffle.publish('statusUpdate', $riffle.User.email);
-  }
-
   $scope.post = function(){
     $scope.postService.post($scope.newStatus).then(publishUpdate);
     $scope.editStatus.hide();
   };
+
+  function publishUpdate(){
+    $riffle.publish('statusUpdate', $riffle.User.email);
+  }
 
   $scope.$on('modal.hidden', function() {
     $scope.newStatus = {};
