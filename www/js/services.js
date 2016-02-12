@@ -4,35 +4,13 @@ angular.module('starter.services', [])
 
   var api = {};
 
-  //private vars and functions
-  function loadData(posts){
-    api.users = [];
-    api.myFeed = [];
-    posts.forEach(filter);
-    $rootScope.$broadcast('scroll.refreshComplete');
-  }
-
-  function filter(post){
-    var following = $riffle.User.privateStorage.following || [];
-    if(post.email === $riffle.User.email){
-      return;
-    }else if(following.includes(post.email)){
-      api.myFeed.push(post);
-    }else{
-      api.users.push(post);
-    }
-  }
-
   //listen live for status updates
   $riffle.subscribe("statusUpdate", update);
 
   function update(email){
     var following = $riffle.User.privateStorage.following || [];
-    for(var entry in following){
-      if(email === following[entry]){
-        api.load();
-        return;
-      }
+    if(following.includes(email)){
+      api.load();
     }
   }
 
@@ -42,6 +20,24 @@ angular.module('starter.services', [])
 
   api.load = function(){
     $riffle.User.getPublicData().then(loadData);
+
+    function loadData(posts){
+      api.users = [];
+      api.myFeed = [];
+      posts.forEach(filter);
+      $rootScope.$broadcast('scroll.refreshComplete');
+    }
+
+    function filter(post){
+      var following = $riffle.User.privateStorage.following || [];
+      if(post.email === $riffle.User.email){
+        return;
+      }else if(following.includes(post.email)){
+        api.myFeed.push(post);
+      }else{
+        api.users.push(post);
+      }
+    }
   };
 
   api.follow = function(email){
