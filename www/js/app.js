@@ -126,7 +126,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     username: "dale",
     password: "ExisRocks!",
     name: 'Dale Willis',
-    status: 'Hanging out in San Francisco while we hold down the fort.',
+    status: 'Making app development simpler!',
     email: 'dale@exis.io'
   } ];
 
