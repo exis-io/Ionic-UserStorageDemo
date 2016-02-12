@@ -5,7 +5,9 @@ angular.module('starter.services', [])
   var api = {};
 
   //listen live for status updates
-  $riffle.subscribe("statusUpdate", update);
+  $rootScope.$on('$riffle.open', function(){
+    $riffle.subscribe("statusUpdate", update);
+  });
 
   function update(email){
     var following = $riffle.User.privateStorage.following || [];
