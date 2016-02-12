@@ -12,10 +12,11 @@
         </p>
       </div>
       <div ng-repeat="post in postService.myFeed">
-        <ion-item class="item item-avatar">
+        <ion-item class="item item-avatar item-icon-right">
           <img ng-src="http://www.gravatar.com/avatar/{{post.gravatar}}">
           <h2>{{post.name}}</h2>
           <p>{{post.email}}</p>
+          <i class="icon ion-chevron-left"></i>
           <ion-option-button class="button-assertive" ng-click="postService.unfollow(post.email)">Unfollow</ion-option-button>
         </ion-item>
         <div class="item item-body">
