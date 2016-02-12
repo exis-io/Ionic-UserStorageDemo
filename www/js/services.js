@@ -9,7 +9,7 @@ angular.module('starter.services', [])
   api.myFeed = [];
 
   api.load = function(){
-    $riffle.User.getPublicData().then(loadData);
+    $riffle.user.getPublicData().then(loadData);
 
     function loadData(posts){
       api.users = [];
@@ -19,8 +19,8 @@ angular.module('starter.services', [])
     }
 
     function filter(post){
-      var following = $riffle.User.privateStorage.following || [];
-      if(post.email === $riffle.User.email){
+      var following = $riffle.user.privateStorage.following || [];
+      if(post.email === $riffle.user.email){
         return;
       }else if(following.includes(post.email)){
         api.myFeed.push(post);
@@ -31,24 +31,24 @@ angular.module('starter.services', [])
   };
 
   api.follow = function(email){
-    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || [];
-    $riffle.User.privateStorage.following.push(email);
-    $riffle.User.save().then(api.load);
+    $riffle.user.privateStorage.following = $riffle.user.privateStorage.following || [];
+    $riffle.user.privateStorage.following.push(email);
+    $riffle.user.save().then(api.load);
   };
 
   api.post = function(status){
-    $riffle.User.publicStorage.email = $riffle.User.email;
-    $riffle.User.publicStorage.name = $riffle.User.name;
-    $riffle.User.publicStorage.status = status.body;
-    $riffle.User.publicStorage.statusPhotoUrl = status.photoUrl || null;
-    return $riffle.User.save();
+    $riffle.user.publicStorage.email = $riffle.user.email;
+    $riffle.user.publicStorage.name = $riffle.user.name;
+    $riffle.user.publicStorage.status = status.body;
+    $riffle.user.publicStorage.statusPhotoUrl = status.photoUrl || null;
+    return $riffle.user.save();
   };
 
   api.unfollow = function(email){
-    var index = $riffle.User.privateStorage.following.indexOf(email);
+    var index = $riffle.user.privateStorage.following.indexOf(email);
     if(index > -1){
-      $riffle.User.privateStorage.following.splice(index, 1);
-      $riffle.User.save().then(api.load);
+      $riffle.user.privateStorage.following.splice(index, 1);
+      $riffle.user.save().then(api.load);
     }
   };
 
