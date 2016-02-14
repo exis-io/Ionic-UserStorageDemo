@@ -16,6 +16,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.register = function(){
+    $scope.user.username = $filter('lowercase')($scope.user.username);
     $riffle.registerAccount($scope.user).then($scope.login, error);
   };
 
