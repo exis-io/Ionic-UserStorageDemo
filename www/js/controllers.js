@@ -6,11 +6,12 @@ angular.module('starter.controllers', [])
 .controller('FollowCtrl', function($scope) {
 })
 
-.controller('LoginCtrl', function($scope, $state, $riffle, $ionicPopup, $rootScope, Posts) {
+.controller('LoginCtrl', function($scope, $state, $riffle, $ionicPopup, $rootScope, $filter, Posts) {
 
   $scope.user = {};
 
   $scope.login = function(){
+    $scope.user.username = $filter('lowercase')($scope.user.username);
     $riffle.login($scope.user).then(loggedIn, error);
   };
 

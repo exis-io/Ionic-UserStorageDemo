@@ -78,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 })
 .config(function($riffleProvider){
-  $riffleProvider.SetDomain("xs.demo.USERNAME.userstorage");
+  $riffleProvider.SetDomain("xs.demo.croossin.ionicuserstorage");
 })
 .run(function($riffle, $rootScope, $state){
   $rootScope.$on('$ionicView.enter', function() {
