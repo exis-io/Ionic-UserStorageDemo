@@ -11,7 +11,7 @@
           You currently aren't following anyone. Find Users to follow in the Follow tab.
         </p>
       </div>
-      <div ng-repeat="post in postService.myFeed">
+      <div ng-repeat="post in postService.myFeed" class="feed">
         <ion-item class="item item-avatar item-icon-right">
           <img ng-src="http://www.gravatar.com/avatar/{{post.gravatar}}">
           <h2>{{post.name}}</h2>
