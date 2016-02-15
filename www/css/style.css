@@ -5,3 +5,14 @@
 .item-complex.item-icon-right .item-content{
 	background-color: lightblue;
 }
+.item-body p{
+	margin-top: 0px !important;
+}
+.item p2{
+	color: #666;
+	font-style: italic;
+	font-size: 12px;
+}
+.item-avatar .item-content > img:first-child{
+	top: 27px;
+}

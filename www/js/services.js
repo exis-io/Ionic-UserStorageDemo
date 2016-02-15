@@ -41,6 +41,7 @@ angular.module('starter.services', [])
     $riffle.User.publicStorage.name = $riffle.User.name;
     $riffle.User.publicStorage.status = status.body;
     $riffle.User.publicStorage.statusPhotoUrl = status.photoUrl || null;
+    $riffle.User.publicStorage.timeStamp = new Date().toLocaleTimeString();
     return $riffle.User.save();
   };
 

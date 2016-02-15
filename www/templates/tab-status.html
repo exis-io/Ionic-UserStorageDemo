@@ -11,9 +11,10 @@
         <img ng-src="http://www.gravatar.com/avatar/{{me.gravatar}}">
         <h2>{{me.name}}</h2>
         <p>{{me.email}}</p>
+        <p>Last Updated: {{me.publicStorage.timeStamp || "Never posted..."}}</p>
       </div>
       <div class="item item-body">
-        <p>
+        <p>      
           {{me.publicStorage.status || "Post your status for others to see..."}}
         </p>
         <img ng-if="me.publicStorage.statusPhotoUrl" class="full-image" ng-src="{{me.publicStorage.statusPhotoUrl}}">

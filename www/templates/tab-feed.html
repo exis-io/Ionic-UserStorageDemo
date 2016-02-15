@@ -16,12 +16,13 @@
           <img ng-src="http://www.gravatar.com/avatar/{{post.gravatar}}">
           <h2>{{post.name}}</h2>
           <p>{{post.email}}</p>
+          <p2>Updated: {{post.timeStamp}}</p2>
           <i class="icon ion-chevron-left"></i>
           <ion-option-button class="button-assertive" ng-click="postService.unfollow(post.email)">Unfollow</ion-option-button>
         </ion-item>
         <div class="item item-body">
           <p>
-            {{post.status}}
+          {{post.status}}
           </p>
           <img ng-if="post.statusPhotoUrl" class="full-image" ng-src="{{post.statusPhotoUrl}}">
           <img ng-if="!post.statusPhotoUrl" style="max-height: 200px;" src="img/exis-logo.png">

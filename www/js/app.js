@@ -151,10 +151,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       session.publicStorage.email = user.email;
       session.publicStorage.name = user.name;
       session.publicStorage.gravatar = session.gravatar;
+      session.publicStorage.timeStamp = new Date().toLocaleTimeString();
       session.save().then(logout, error);
     }
     function logout(){
-      $riffle.User.leave().then(seedDB, error);
+      $riffle.User.leave().then(timeout, error);
+    }
+    function timeout(){
+      setTimeout(seedDB, 4000);
     }
     function error(){
       return;
