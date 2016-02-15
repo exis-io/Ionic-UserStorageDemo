@@ -2,3 +2,6 @@
 .feed{
 	padding: 0px 0px 10px 0px;
 }
+.item-complex.item-icon-right .item-content{
+	background-color: lightblue;
+}
