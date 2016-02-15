@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
   };
 
   function publishUpdate(){
-    $riffle.publish('statusUpdate', $riffle.User.email);
+    $riffle.publish('statusUpdate', $riffle.user.email);
   }
 
   $scope.$on('modal.hidden', function() {
