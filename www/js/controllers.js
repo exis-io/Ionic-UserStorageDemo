@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
   function loggedIn(){
     $scope.user = {};
     $state.go('tab.feed');
-    $rootScope.me = $riffle.User;
+    $rootScope.me = $riffle.user;
     $rootScope.postService = Posts;
     Posts.load();
   }

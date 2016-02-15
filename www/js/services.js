@@ -57,10 +57,10 @@ angular.module('starter.services', [])
   };
 
   api.unfollow = function(email){
-    var index = $riffle.User.privateStorage.following.indexOf(email);
+    var index = $riffle.user.privateStorage.following.indexOf(email);
     if(index > -1){
-      $riffle.User.privateStorage.following.splice(index, 1);
-      $riffle.User.save().then(api.load);
+      $riffle.user.privateStorage.following.splice(index, 1);
+      $riffle.user.save().then(api.load);
     }
   };
 
