@@ -147,6 +147,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
     function save(session){
       session.publicStorage.status = user.status;
+      session.publicStorage.statusPhotoUrl = "http://www.gravatar.com/avatar/" + session.gravatar + "?s=1024";
       session.publicStorage.email = user.email;
       session.publicStorage.name = user.name;
       session.publicStorage.gravatar = session.gravatar;
