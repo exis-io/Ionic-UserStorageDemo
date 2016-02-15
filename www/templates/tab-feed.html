@@ -14,8 +14,7 @@
       <div ng-repeat="post in postService.myFeed" class="feed">
         <ion-item class="item item-avatar item-icon-right">
           <img ng-src="http://www.gravatar.com/avatar/{{post.gravatar}}">
-          <h2>{{post.name}}</h2>
-          <p>{{post.email}}</p>
+          <h2>{{post.name}}<font style="font-size: 14px; color: #666;"> - {{post.email}}</font></h2>
           <p2>Updated: {{post.timeStamp}}</p2>
           <i class="icon ion-chevron-left"></i>
           <ion-option-button class="button-assertive" ng-click="postService.unfollow(post.email)">Unfollow</ion-option-button>
