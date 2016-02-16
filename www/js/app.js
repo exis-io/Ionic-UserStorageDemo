@@ -78,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 })
 .config(function($riffleProvider){
-  $riffleProvider.SetDomain("xs.demo.USERNAME.userstorage");
+  $riffleProvider.setDomain("xs.demo.USERNAME.userstorage");
 })
 .run(function($riffle, $rootScope, $state){
   $rootScope.$on('$ionicView.enter', function() {
@@ -155,10 +155,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       session.save().then(logout, error);
     }
     function logout(){
-      $riffle.User.leave().then(timeout, error);
-    }
-    function timeout(){
-      setTimeout(seedDB, 4000);
+      $riffle.user.leave().then(seedDB, error);
     }
     function error(){
       return;

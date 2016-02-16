@@ -4,12 +4,24 @@ angular.module('starter.services', [])
 
   var api = {};
 
+  //listen live for status updates
+  $rootScope.$on('$riffle.open', function(){
+    $riffle.subscribe("statusUpdate", update);
+  });
+
+  function update(email){
+    var following = $riffle.user.privateStorage.following || [];
+    if(following.includes(email)){
+      api.load();
+    }
+  }
+
   //API Methods and vars
   api.users = [];
   api.myFeed = [];
 
   api.load = function(){
-    $riffle.User.getPublicData().then(loadData);
+    $riffle.user.getPublicData().then(loadData);
 
     function loadData(posts){
       api.users = [];
@@ -19,8 +31,8 @@ angular.module('starter.services', [])
     }
 
     function filter(post){
-      var following = $riffle.User.privateStorage.following || [];
-      if(post.email === $riffle.User.email){
+      var following = $riffle.user.privateStorage.following || [];
+      if(post.email === $riffle.user.email){
         return;
       }else if(following.includes(post.email)){
         api.myFeed.push(post);
@@ -31,9 +43,9 @@ angular.module('starter.services', [])
   };
 
   api.follow = function(email){
-    $riffle.User.privateStorage.following = $riffle.User.privateStorage.following || [];
-    $riffle.User.privateStorage.following.push(email);
-    $riffle.User.save().then(api.load);
+    $riffle.user.privateStorage.following = $riffle.user.privateStorage.following || [];
+    $riffle.user.privateStorage.following.push(email);
+    $riffle.user.save().then(api.load);
   };
 
   api.post = function(status){
@@ -46,10 +58,10 @@ angular.module('starter.services', [])
   };
 
   api.unfollow = function(email){
-    var index = $riffle.User.privateStorage.following.indexOf(email);
+    var index = $riffle.user.privateStorage.following.indexOf(email);
     if(index > -1){
-      $riffle.User.privateStorage.following.splice(index, 1);
-      $riffle.User.save().then(api.load);
+      $riffle.user.privateStorage.following.splice(index, 1);
+      $riffle.user.save().then(api.load);
     }
   };
 

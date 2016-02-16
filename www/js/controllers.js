@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
   function loggedIn(){
     $scope.user = {};
     $state.go('tab.feed');
-    $rootScope.me = $riffle.User;
+    $rootScope.me = $riffle.user;
     $rootScope.postService = Posts;
     Posts.load();
   }
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('StatusCtrl', function($scope, $ionicModal) {
+.controller('StatusCtrl', function($scope, $riffle, $ionicModal) {
 
   $scope.newStatus = {};
 
@@ -52,9 +52,13 @@ angular.module('starter.controllers', [])
   });
 
   $scope.post = function(){
-    $scope.postService.post($scope.newStatus);
+    $scope.postService.post($scope.newStatus).then(publishUpdate);
     $scope.editStatus.hide();
   };
+
+  function publishUpdate(){
+    $riffle.publish('statusUpdate', $riffle.user.email);
+  }
 
   $scope.$on('modal.hidden', function() {
     $scope.newStatus = {};
