@@ -11,12 +11,10 @@ angular.module('starter.controllers', [])
   $scope.user = {};
 
   $scope.login = function(){
-    $scope.user.username = $filter('lowercase')($scope.user.username);
     $riffle.login($scope.user).then(loggedIn, error);
   };
 
   $scope.register = function(){
-    $scope.user.username = $filter('lowercase')($scope.user.username);
     $riffle.registerAccount($scope.user).then($scope.login, error);
   };
 
