@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+.feed{
+	padding: 0px 0px 10px 0px;
+}
+.item-complex.item-icon-right .item-content{
+	background-color: lightblue;
+}
+.item-body p{
+	margin-top: 0px !important;
+}
+.item p2{
+	color: #666;
+	font-style: italic;
+	font-size: 12px;
+}

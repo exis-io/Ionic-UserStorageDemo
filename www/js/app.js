@@ -96,7 +96,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 })
 //this block seeds the User DB with some fake users the first time this app is run.
 //feel free to delete it
-.run(function($riffle){
+.run(function($riffle, $ionicLoading){
+  $ionicLoading.show({
+    template: '<ion-spinner></ion-spinner></br>Seeding Users...'
+  });
   // Some fake data
   var seed = [{
     username: "nick",
@@ -138,6 +141,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   function seedDB(){
     if(seed.length === 0){
+      $ionicLoading.hide();
       return;
     }
     var user = seed.pop();
@@ -151,12 +155,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       session.publicStorage.email = user.email;
       session.publicStorage.name = user.name;
       session.publicStorage.gravatar = session.gravatar;
+      session.publicStorage.timeStamp = new Date().toLocaleTimeString();
       session.save().then(logout, error);
     }
     function logout(){
       $riffle.user.leave().then(seedDB, error);
     }
     function error(){
+      $ionicLoading.hide();
       return;
     }
   }
