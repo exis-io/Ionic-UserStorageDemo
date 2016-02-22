@@ -47,12 +47,13 @@ angular.module('starter.services', [])
   };
 
   api.post = function(status){
-    $riffle.User.publicStorage.email = $riffle.User.email;
-    $riffle.User.publicStorage.name = $riffle.User.name;
-    $riffle.User.publicStorage.status = status.body;
-    $riffle.User.publicStorage.statusPhotoUrl = status.photoUrl || null;
-    $riffle.User.publicStorage.timeStamp = new Date().toLocaleTimeString();
-    return $riffle.User.save();
+    $riffle.user.publicStorage.email = $riffle.user.email;
+    $riffle.user.publicStorage.name = $riffle.user.name;
+    $riffle.user.publicStorage.gravatar = $riffle.user.gravatar;
+    $riffle.user.publicStorage.status = status.body;
+    $riffle.user.publicStorage.statusPhotoUrl = status.photoUrl || null;
+    $riffle.user.publicStorage.timeStamp = new Date().toLocaleTimeString();
+    return $riffle.user.save();
   };
 
   api.unfollow = function(email){
