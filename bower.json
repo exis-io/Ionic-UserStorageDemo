@@ -5,6 +5,6 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "ngRiffle": "~0.3.2"
+    "ngRiffle": "0.4.2"
   }
 }
